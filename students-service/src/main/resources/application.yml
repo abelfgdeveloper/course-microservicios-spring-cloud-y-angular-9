@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: pet-clinic-customers-service
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/springcloudyangular9?currentSchema=students
+    username: postgres
+    password: postgres
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+    hibernate:
+      ddl-auto: update
+  jackson:
+    default-property-inclusion: non-null
