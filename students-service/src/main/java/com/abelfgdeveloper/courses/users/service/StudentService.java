@@ -13,5 +13,5 @@ public interface StudentService {
 
   Student findById(String id);
 
-  List<Student> findAll();
+  List<Student> findAll(String name);
 }

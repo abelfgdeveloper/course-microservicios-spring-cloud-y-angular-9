@@ -1,15 +1,17 @@
 package com.abelfgdeveloper.courses.users.service.impl;
 
+import com.abelfgdeveloper.courses.common.exception.client.NotFoundException;
 import com.abelfgdeveloper.courses.users.domain.Student;
 import com.abelfgdeveloper.courses.users.mapper.StudentMapper;
 import com.abelfgdeveloper.courses.users.model.entity.StudentEntity;
-import com.abelfgdeveloper.courses.users.repository.StudentRepository;
+import com.abelfgdeveloper.courses.users.model.repository.StudentRepository;
 import com.abelfgdeveloper.courses.users.service.StudentService;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 @RequiredArgsConstructor
 @Service
@@ -20,17 +22,16 @@ public class DefaultStudentService implements StudentService {
 
   @Override
   public Student create(Student student) {
-    return studentMapper.mapEntityToDomain(
-        studentRepository.save(studentMapper.mapDomainToEntity(student)));
+    return saveStudent(studentMapper.mapDomainToEntity(student));
   }
 
   @Override
   public Student update(String id, Student student) {
-    StudentEntity studentEntity = findStudentById(id);
-    studentEntity.setFirstName(student.getFirstName());
-    studentEntity.setLastName(student.getLastName());
-    studentEntity.setEmail(student.getEmail());
-    return studentMapper.mapEntityToDomain(studentRepository.save(studentEntity));
+    StudentEntity studentInDataBase = findStudentById(id);
+    studentInDataBase.setFirstName(student.getFirstName());
+    studentInDataBase.setLastName(student.getLastName());
+    studentInDataBase.setEmail(student.getEmail());
+    return saveStudent(studentInDataBase);
   }
 
   @Override
@@ -44,12 +45,18 @@ public class DefaultStudentService implements StudentService {
   }
 
   @Override
-  public List<Student> findAll() {
-    return studentRepository
-        .findAll()
-        .stream()
-        .map(studentMapper::mapEntityToDomain)
-        .collect(Collectors.toList());
+  public List<Student> findAll(String name) {
+    List<StudentEntity> students = null;
+    if (StringUtils.hasLength(name)) {
+      students = studentRepository.findByFirstNameOrLastName(name);
+    } else {
+      students = studentRepository.findAll();
+    }
+    return students.stream().map(studentMapper::mapEntityToDomain).collect(Collectors.toList());
+  }
+
+  private Student saveStudent(StudentEntity student) {
+    return studentMapper.mapEntityToDomain(studentRepository.save(student));
   }
 
   private StudentEntity findStudentById(String id) {
@@ -57,7 +64,7 @@ public class DefaultStudentService implements StudentService {
     if (student.isPresent()) {
       return student.get();
     } else {
-      throw new RuntimeException("Studiante no encontrado");
+      throw new NotFoundException("Estudiante no encontrado");
     }
   }
 }

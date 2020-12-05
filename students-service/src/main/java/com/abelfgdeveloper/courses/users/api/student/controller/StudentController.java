@@ -48,7 +48,7 @@ public class StudentController implements StudentApi {
   }
 
   @Override
-  public StudentListResponseResource findAll() {
-    return studentMapper.mapDomainToResource(studentFindAllUseCase.execute());
+  public StudentListResponseResource findAll(String name) {
+    return studentMapper.mapDomainToResource(studentFindAllUseCase.execute(name));
   }
 }

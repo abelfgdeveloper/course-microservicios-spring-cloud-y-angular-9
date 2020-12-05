@@ -5,5 +5,5 @@ import java.util.List;
 
 public interface StudentFindAllUseCase {
 
-  List<Student> execute();
+  List<Student> execute(String name);
 }

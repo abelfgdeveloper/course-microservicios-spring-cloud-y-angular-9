@@ -16,7 +16,7 @@ public class DefaultStudentFindAllUseCase implements StudentFindAllUseCase {
 
   @Transactional(readOnly = true)
   @Override
-  public List<Student> execute() {
-    return studentService.findAll();
+  public List<Student> execute(String name) {
+    return studentService.findAll(name);
   }
 }

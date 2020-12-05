@@ -1,0 +1,311 @@
+{
+	"info": {
+		"_postman_id": "f2d83691-b66d-471e-9fc8-05de272f3755",
+		"name": "microservicios-spring-cloud-y-angular-9",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "students-service",
+			"item": [
+				{
+					"name": "CreateNewStudent",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Frodo\",\r\n    \"lastName\": \"Bolson\",\r\n    \"email\": \"frodo@bolson.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{students-service-url}}",
+							"host": [
+								"{{students-service-url}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateStudent",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Bilbo\",\r\n    \"lastName\": \"Bolson\",\r\n    \"email\": \"frodo@bolson.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{students-service-url}}/1366fea9-69a8-4d00-957f-13a74f205d26",
+							"host": [
+								"{{students-service-url}}"
+							],
+							"path": [
+								"1366fea9-69a8-4d00-957f-13a74f205d26"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindStudentById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{students-service-url}}/1366fea9-69a8-4d00-957f-13a74f205d26",
+							"host": [
+								"{{students-service-url}}"
+							],
+							"path": [
+								"1366fea9-69a8-4d00-957f-13a74f205d26"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteStudentById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{students-service-url}}/1366fea9-69a8-4d00-957f-13a74f205d26",
+							"host": [
+								"{{students-service-url}}"
+							],
+							"path": [
+								"1366fea9-69a8-4d00-957f-13a74f205d26"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindAllStudents",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{students-service-url}}",
+							"host": [
+								"{{students-service-url}}"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "z",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "courses-service",
+			"item": [
+				{
+					"name": "students",
+					"item": [
+						{
+							"name": "AddStudentToCourse",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{courses-service-url}}/dcc6da23-6212-48fd-83a0-e317eef6a1d5/students/01b4cf7b-2be6-4463-be08-883a18b08a5f",
+									"host": [
+										"{{courses-service-url}}"
+									],
+									"path": [
+										"dcc6da23-6212-48fd-83a0-e317eef6a1d5",
+										"students",
+										"01b4cf7b-2be6-4463-be08-883a18b08a5f"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteStudentFromCourse",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{courses-service-url}}/dcc6da23-6212-48fd-83a0-e317eef6a1d5/students/01b4cf7b-2be6-4463-be08-883a18b08a5f",
+									"host": [
+										"{{courses-service-url}}"
+									],
+									"path": [
+										"dcc6da23-6212-48fd-83a0-e317eef6a1d5",
+										"students",
+										"01b4cf7b-2be6-4463-be08-883a18b08a5f"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "FindCourseByStudentId",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{courses-service-url}}/students/01b4cf7b-2be6-4463-be08-883a18b08a5f",
+									"host": [
+										"{{courses-service-url}}"
+									],
+									"path": [
+										"students",
+										"01b4cf7b-2be6-4463-be08-883a18b08a5f"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "CreateNewCourse",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Matematicas\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{courses-service-url}}/d5b99af7-d870-4138-aec0-d505969d5143",
+							"host": [
+								"{{courses-service-url}}"
+							],
+							"path": [
+								"d5b99af7-d870-4138-aec0-d505969d5143"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateCourse",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Lengua\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{courses-service-url}}/d5b99af7-d870-4138-aec0-d505969d5143",
+							"host": [
+								"{{courses-service-url}}"
+							],
+							"path": [
+								"d5b99af7-d870-4138-aec0-d505969d5143"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindCourseById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{courses-service-url}}/d5b99af7-d870-4138-aec0-d505969d5143",
+							"host": [
+								"{{courses-service-url}}"
+							],
+							"path": [
+								"d5b99af7-d870-4138-aec0-d505969d5143"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCourseById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{courses-service-url}}/d5b99af7-d870-4138-aec0-d505969d5143",
+							"host": [
+								"{{courses-service-url}}"
+							],
+							"path": [
+								"d5b99af7-d870-4138-aec0-d505969d5143"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FindAllCourses",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{courses-service-url}}",
+							"host": [
+								"{{courses-service-url}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "aba20211-125b-4528-b552-1ecaf9c699a5",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "c273adf3-a770-4243-b914-43a774eee465",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

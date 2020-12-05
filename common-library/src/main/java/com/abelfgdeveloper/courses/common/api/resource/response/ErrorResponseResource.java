@@ -21,6 +21,7 @@ public class ErrorResponseResource {
   private int status;
   private String error;
   private String message;
+  private String code;
   private String detail;
   private List<String> stackTrace;
   private ErrorResponseResource cause;
